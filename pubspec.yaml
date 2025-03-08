@@ -34,7 +34,9 @@ dependencies:
   go_router: ^6.0.0
   geolocator: ^9.0.2
   flutter_dotenv: ^5.0.2
-  google_maps_cluster_manager:
+  google_maps_cluster_manager: ^1.0.0
+  http: ^0.13.4
+  flutter_polyline_points:
     ^1.0.0
 
     # The following adds the Cupertino Icons font to your application.

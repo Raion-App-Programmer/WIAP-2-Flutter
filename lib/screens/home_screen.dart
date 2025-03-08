@@ -7,12 +7,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text('Google Maps API Demos'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blue, Colors.lightBlueAccent],
+              colors: [Colors.grey.shade300, Colors.grey.shade200],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -21,116 +24,109 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          gradient: LinearGradient(
+            colors: [Colors.grey.shade100, Colors.grey.shade50],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
-        padding: const EdgeInsets.all(16),
-        child: ListView(
-          children: [
-            const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                'Welcome to the Maps Demo!',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView(
+              children: [
+                const SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    'Welcome to the Maps Demo!',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade900,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                _buildDemoCard(
+                  context,
+                  icon: Icons.place,
+                  title: 'Pin Demo',
+                  subtitle: 'Explore various pins on the map.',
+                  route: '/pin',
+                ),
+                const SizedBox(height: 12),
+                _buildDemoCard(
+                  context,
+                  icon: Icons.edit,
+                  title: 'Drawing Demo',
+                  subtitle: 'Interactively draw a polyline on the map.',
+                  route: '/drawing',
+                ),
+                const SizedBox(height: 12),
+                _buildDemoCard(
+                  context,
+                  icon: Icons.directions_run,
+                  title: 'Live Tracking Demo',
+                  subtitle: 'Track your live location in real time.',
+                  route: '/live-tracking',
+                ),
+                const SizedBox(height: 12),
+                _buildDemoCard(
+                  context,
+                  icon: Icons.crop_square,
+                  title: 'Overlays Demo',
+                  subtitle: 'Display polygons and circles on the map.',
+                  route: '/overlays',
+                ),
+                const SizedBox(height: 12),
+                _buildDemoCard(
+                  context,
+                  icon: Icons.palette,
+                  title: 'Custom Map Styling',
+                  subtitle: 'Apply custom themes to your map.',
+                  route: '/custom-style',
+                ),
+                const SizedBox(height: 12),
+              ],
             ),
-            const SizedBox(height: 20),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.place, color: Colors.redAccent),
-                title: const Text('Pin Demo'),
-                subtitle: const Text('Explore various pins on the map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/pin'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.edit, color: Colors.blue),
-                title: const Text('Drawing Demo'),
-                subtitle:
-                    const Text('Interactively draw a polyline on the map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/drawing'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.directions_run, color: Colors.green),
-                title: const Text('Live Tracking Demo'),
-                subtitle: const Text('Track your live location in real time.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/live-tracking'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.crop_square, color: Colors.orange),
-                title: const Text('Overlays Demo'),
-                subtitle:
-                    const Text('Display polygons and circles on the map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/overlays'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.palette, color: Colors.purple),
-                title: const Text('Custom Map Styling'),
-                subtitle: const Text('Apply custom themes to your map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/custom-style'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.search, color: Colors.teal),
-                title: const Text('Place Search & Nearby'),
-                subtitle:
-                    const Text('Search and view nearby places on the map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/place-search'),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 4,
-              child: ListTile(
-                leading: const Icon(Icons.directions, color: Colors.indigo),
-                title: const Text('Directions Demo'),
-                subtitle:
-                    const Text('Show a route between two points on the map.'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => context.go('/directions'),
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDemoCard(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required String route,
+  }) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      elevation: 6,
+      shadowColor: Colors.black26,
+      color: Colors.white,
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        leading: CircleAvatar(
+          backgroundColor: Colors.grey.shade300,
+          child: Icon(icon, color: Colors.grey.shade800),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade900,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(color: Colors.grey.shade700),
+        ),
+        trailing: Icon(Icons.chevron_right, color: Colors.grey.shade600),
+        onTap: () => context.go(route),
       ),
     );
   }
